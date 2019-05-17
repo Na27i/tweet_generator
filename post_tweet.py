@@ -1,5 +1,12 @@
 import json
-import settings
+import sys
+
+args = sys.argv
+
+if len(args) == 1 :
+    import main as settings
+else :
+    import sub as settings
 
 from requests_oauthlib import OAuth1Session
 
