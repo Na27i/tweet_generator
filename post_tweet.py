@@ -18,22 +18,22 @@ twitter = OAuth1Session(CK, CS, AT, ATS)
 
 url = "https://api.twitter.com/1.1/statuses/update.json"
 
-tweet = ''
-
-print("Please input new tweet.")
 while 1:
-    sent = input('>> ')
-    if sent == "quit":
-        break
-    else:
-        tweet += sent
-        tweet += '\n'
+    tweet = ''
 
-params = {"status" : tweet}
+    print("Please input new tweet.")
+    while 1:
+        sent = input('>> ')
+        if sent == "quit" or sent == "exit":
+            exit(0)
+        elif sent == "sub":
+            break
+        else:
+            tweet += sent
+            tweet += '\n'
 
-res = twitter.post(url, params = params)
+    params = {"status" : tweet}
+    res = twitter.post(url, params = params)
 
-if res.status_code == 200:
-    print("投稿成功")
-else:
-    print("投稿失敗")
+    if res.status_code != 200:
+        print("投稿失敗")
