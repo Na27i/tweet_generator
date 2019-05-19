@@ -23,13 +23,15 @@ url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 
 params = {"count" : 200}
 
-res = twitter.get(url, params = params)
-if res.status_code == 200:
-    timelines = json.loads(res.text)
-    for tweet in timelines:
-        tweetlist.append(tweet["text"])
-else:
-    print("取得失敗(%d)" % res.status_code)
+for i range(5):
+    res = twitter.get(url, params = params)
+
+    if res.status_code == 200:
+        timelines = json.loads(res.text)
+        for tweet in timelines:
+            tweetlist.append(tweet["text"])      
+    else:
+        print("取得失敗(%d)" % res.status_code)
 
 datafile = pandas.DataFrame(tweetlist)
 datafile.to_csv("tweetlist.csv", encoding='utf_8_sig')
