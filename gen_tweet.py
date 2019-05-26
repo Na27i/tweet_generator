@@ -78,8 +78,12 @@ if get_res.status_code == 200:
 
 
     #体言句の追加
-    tai = mei[random.randrange(len(mei))]
+    if len(zyo) == 0:
+        tai = mei[random.randrange(len(mei))]
+    else :
+        tai = mei[random.randrange(len(mei))] + zyo[random.randrange(len(zyo))]
     sent += tai
+
 
     #用言句の追加
     you = random.randrange(3)
